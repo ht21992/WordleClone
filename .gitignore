@@ -1,0 +1,5 @@
+# file: ~/.gitignore_global
+.idea
+*.pyc
+__pycache__
+db.sqlite3
