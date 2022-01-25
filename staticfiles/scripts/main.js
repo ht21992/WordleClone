@@ -1,4 +1,4 @@
-    document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   drawSquares();
   
   var words = ['house','hotel','squad','sport','leafy','wreck','bronx','plant','brown','gnome']
@@ -35,6 +35,8 @@
     const is_correct_letter = word.includes(letter);
 
     if (!is_correct_letter) {
+      btn = document.querySelector(`[data-key="${letter}"]`)
+      btn.style.backgroundColor = "gray";
       return "gray";
     }
 
@@ -42,6 +44,10 @@
     const is_correct_position = letter === letter_in_this_position;
 
     if (is_correct_position) {
+      //const letter = target.getAttribute("data-key");
+
+      btn = document.querySelector(`[data-key="${letter}"]`)
+      btn.style.backgroundColor = "green";
       return "green";
     }
 
@@ -56,7 +62,6 @@
     }
 
 
-    //alert(guessed_word_count)
     const current_word = current_word_array.join("");
     const id_of_first_letter = guessed_word_count * 5 + 1;
 
@@ -77,14 +82,13 @@
 
     guessed_word_count += 1;
     if (current_word === word) {
-          //alert("Congratulations!");
+
           document.getElementById("keyboard-container").innerHTML = `<h3 style="text-align: center;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande'">Congratulations the word is ${word}</h3>`;
-          //$('#keyboard-container *').prop('disabled',true);
+
 
         }
 
         else if (guessed_words.length === 6) {
-          //window.alert(`Sorry, you have no more guesses! The word is ${word}.`);
           document.getElementById("keyboard-container").innerHTML = `<h3 style="text-align: center;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande'">Sorry, you have no more guesses! The word is ${word}.</h3>`;
         }
     guessed_words.push([]);
@@ -140,12 +144,7 @@
   }
   
   document.addEventListener('keydown', (event) => {
-  //var name = event.key;
-  //var code = event.code;
-  // Alert the key name and key code on keydown
-  //console.log(`${name}`);
-  // get only alphabet here
-  //alert(event.which)
+
   if (event.which >= 65 && event.which <=90){
    const letter = event.key;
   updateguessed_words(letter);
